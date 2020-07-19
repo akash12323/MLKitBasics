@@ -27,18 +27,37 @@
         android:background="@color/colorBackground"
         >
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
-            <Spinner
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinnerCategory"
-                android:layout_marginEnd="16dp"
-                android:tooltipText="Source Language"
-                />
+                android:weightSum="100"
+                >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="50"
+                    android:text="Source Language"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/black"
+                    android:gravity="center"
+                    />
+                <Spinner
+                    android:layout_width="0dp"
+                    android:layout_weight="50"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spinnerCategory1"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center"
+                    />
+            </LinearLayout>
+
             <EditText
+                android:layout_marginTop="12dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText"
@@ -60,15 +79,30 @@
                 android:layout_gravity="center"
                 android:id="@+id/btnTranslate"
                 />
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Target Language: Hindi"
-                android:textSize="20sp"
-                android:layout_gravity="start"
-                android:layout_margin="10dp"
-                android:textColor="@android:color/black"
-                />
+                android:weightSum="100"
+                >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="50"
+                    android:text="Target Language"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/black"
+                    android:gravity="center"
+                    />
+                <Spinner
+                    android:layout_width="0dp"
+                    android:layout_weight="50"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spinnerCategory"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center"
+                    />
+            </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -24,7 +24,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:title="Text Recognition"
-                android:layout_marginBottom="10dp"
                 />
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -47,8 +46,11 @@
             android:id="@+id/trButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Text Recognition"
-            android:background="@color/colorToolbar"
+            android:text=" Text Recognition "
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_background"
+            android:backgroundTint="@color/colorToolbar"
             />
     </LinearLayout>
 

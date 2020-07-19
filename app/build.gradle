@@ -61,5 +61,9 @@ dependencies {
 
     //TRANSLATE TEXT
     implementation 'com.google.mlkit:translate:16.1.0'
+
+    //LANGUAGE ID
+    implementation 'com.google.mlkit:language-id:16.1.0'
+
     implementation 'com.google.android.material:material:1.1.0'
 }

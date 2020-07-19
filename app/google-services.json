@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "552768333870",
+    "firebase_url": "https://mlkittutorial-cfe7d.firebaseio.com",
+    "project_id": "mlkittutorial-cfe7d",
+    "storage_bucket": "mlkittutorial-cfe7d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552768333870:android:6d17d0a341e859cbc157bf",
+        "android_client_info": {
+          "package_name": "com.example.mlkittutorial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552768333870-lfrp5j06rgdsp98pvvq9ef86jb7qjoiq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mlkittutorial",
+            "certificate_hash": "8ae73a193355559ed7797dc1c278f95cbc5b5a10"
+          }
+        },
+        {
+          "client_id": "552768333870-660u1rovmc5cnn8iokv9via67mr6a05u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApF6l5BxKtTtTp8NsxVml7iXWNcycZuSc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552768333870-660u1rovmc5cnn8iokv9via67mr6a05u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
