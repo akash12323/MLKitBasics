@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".TextTranslationActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorToolbar"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:title="Translater"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerCategory"
+                android:layout_marginEnd="16dp"
+                android:tooltipText="Source Language"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:hint="Type here..."
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="5dp"
+                android:background="@drawable/edittext_background"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Translate"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/colorToolbar"
+                android:background="@drawable/edittext_background"
+                android:layout_gravity="center"
+                android:id="@+id/btnTranslate"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Target Language: Hindi"
+                android:textSize="20sp"
+                android:layout_gravity="start"
+                android:layout_margin="10dp"
+                android:textColor="@android:color/black"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/translatedText"
+                android:textSize="20sp"
+                android:layout_gravity="start"
+                android:layout_marginStart="10dp"
+                android:hint="Translated text..."
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
