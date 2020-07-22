@@ -1,8 +1,10 @@
 package com.example.mlkittutorial
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.speech.RecognizerIntent
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -14,12 +16,15 @@ import com.google.mlkit.nl.languageid.LanguageIdentification
 import com.google.mlkit.nl.translate.*
 import kotlinx.android.synthetic.main.activity_text_translation.*
 import org.intellij.lang.annotations.Language
+import java.lang.Exception
+import java.util.*
 
 class TextTranslationActivity : AppCompatActivity() {
 
-    private val labels = arrayListOf("Afrikaans", "Arabic", "Belarusian","Catalan","Danish",
-        "English", "Finnish","French","Gujarati","Hindi","Italian","Japanese", "Korean","Romanian","Russian",
-        "Thai","Tamil","Telugu","Vietnamese","Ukrainian","Urdu")
+    private val labels = arrayListOf("English","Afrikaans", "Arabic", "Belarusian","bg-Bulgarian","bn-Bengali","cs-Czech","cy-Welsh",
+        "Catalan","de-German","el-Greek","Danish","es-Spanish","Finnish","French","Gujarati","Hindi","Italian","Japanese",
+        "Korean","Romanian","Russian","Thai","Tamil","Telugu","Vietnamese","Ukrainian","Urdu","fa-Persian","ga-Irish","kn-Kannada",
+        "mr-Marathi","nl-Dutch","pt-Portuguese","tr-Turkish","zh-Chinese")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +34,24 @@ class TextTranslationActivity : AppCompatActivity() {
 
         setUpSpinner()
 
+        mic_button.setOnClickListener {
+            val i = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+
+            i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+            i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+            i.putExtra(RecognizerIntent.EXTRA_PROMPT,"Speak Now!!!")
+
+            try {
+                startActivityForResult(i,1000)
+            }
+            catch (e:Exception){
+                Toast.makeText(this,"Failed to detect the text",Toast.LENGTH_SHORT).show()
+            }
+        }
+
 //        TRANSLATE LANGUAGE
         btnTranslate.setOnClickListener {
+//            MainActivity::alertDialog
             val category = spinnerCategory.selectedItem.toString()
             Log.d("lang",category.toLowerCase().substring(0,2))
 
@@ -57,9 +78,9 @@ class TextTranslationActivity : AppCompatActivity() {
 
             englishHindiTranslator.translate(editText.text.toString())
                 .addOnSuccessListener {
-                    translatedText.text = it.toString()
+                    translatedText.setText(it.toString())
                     if (editText.text.toString() == ""){
-                        translatedText.text = "Please enter some text"
+                        translatedText.setText("Please enter some text")
                     }
                     // Translation successful.
                 }
@@ -117,5 +138,17 @@ class TextTranslationActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        when(requestCode){
+            1000->{
+                if (resultCode == Activity.RESULT_OK && data!=null){
+                    editText.setText(data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS).get(0))
+                }
+            }
+        }
     }
 }
