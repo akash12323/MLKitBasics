@@ -13,9 +13,12 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
 import com.squareup.picasso.Picasso
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -28,10 +31,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(toolbar)
-
-//        Glide.with(this)
-//            .load(selected_photo)
-//            .into(img)
 
         trButton.setOnClickListener {
             alertDialog()
@@ -59,20 +58,24 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == 100 && resultCode == Activity.RESULT_OK){
             val photo = data!!.extras!!.get("data") as Bitmap
 
-            img.visibility = View.GONE
+            img.visibility = View.VISIBLE
+            Glide.with(this)
+                .load(photo)
+                .centerCrop()
+                .into(img)
 
             textRecoginitionFromBitmap(photo)
-//            imageLabelBitmap(photo)
         }
         else if (requestCode == 0 && resultCode == Activity.RESULT_OK && data!=null && data.data!=null){
             selected_photo = data.data
 
             img.visibility = View.VISIBLE
 
-            Picasso.get().load(selected_photo).into(img)
+            CropImage.activity(selected_photo)
+                .setGuidelines(CropImageView.Guidelines.ON)
+                .setCropShape(CropImageView.CropShape.RECTANGLE)
+                .start(this)
 
-            textRecoginitionFromUri(selected_photo)
-//            imageLabelUri(selected_photo)
         }
         else if (requestCode == 100 && resultCode == Activity.RESULT_CANCELED){
             Toast.makeText(this,"Operation Cancelled by the user",Toast.LENGTH_SHORT).show()
@@ -82,6 +85,16 @@ class MainActivity : AppCompatActivity() {
         }
         else{
             Toast.makeText(this,"Operation Failed",Toast.LENGTH_SHORT).show()
+        }
+
+        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
+            val result = CropImage.getActivityResult(data)
+            if (resultCode == Activity.RESULT_OK){
+                Glide.with(this).load(result.uri)
+                    .into(img)
+
+                textRecoginitionFromUri(result.uri)
+            }
         }
     }
 

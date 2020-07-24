@@ -13,6 +13,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.label.ImageLabeling
 import com.google.mlkit.vision.label.defaults.ImageLabelerOptions
@@ -56,7 +57,9 @@ class ImageLabellingActivity : AppCompatActivity() {
         if (requestCode == 100 && resultCode == Activity.RESULT_OK){
             val photo = data!!.extras!!.get("data") as Bitmap
 
-            img.visibility = View.GONE
+            img.visibility = View.VISIBLE
+
+            Glide.with(this).load(photo).into(img)
 
             imageLabelBitmap(photo)
         }
